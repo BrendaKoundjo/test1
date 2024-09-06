@@ -7,3 +7,15 @@ git config: pour la configuration permet de creer une configuration pour tous me
  -git config user.email "christmagne0310@gmail.com"
  -git config color.diff auto: pour definir la couleur
 .pour voir toutes les configuration possible nous pouvond tapper la commande git congit --list
+
+comment faire suivre notre fichier par git: 
+.pour avoir la statue: git status
+.pour faire le commit je dois d'abord l'indexer
+ git add texte.txt
+.ensuite je peut faire le commit
+git commit -m "creation de texte"
+
+pour avoir l'historique de mes commits
+git log
+
+le stage contient les fichiers indexe
