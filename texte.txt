@@ -1,0 +1,9 @@
+la commande git init : elle permet de rentre mon dossier 
+depot local
+git config: pour la configuration permet de creer une configuration pour tous mes depot ou a chaque depot : c'est la notion de visibilite
+.pour une configuration globale git config --global
+.pour une configuration local 
+ -git config user.name "christ"
+ -git config user.email "christmagne0310@gmail.com"
+ -git config color.diff auto: pour definir la couleur
+.pour voir toutes les configuration possible nous pouvond tapper la commande git congit --list
