@@ -15,6 +15,9 @@ comment faire suivre notre fichier par git:
 .ensuite je peut faire le commit
 git commit -m "creation de texte"
 
+il existe une commande qui fait les deux a la fois
+.git commit -a "commentaire"
+
 pour avoir l'historique de mes commits
 git log
 
