@@ -16,9 +16,14 @@ comment faire suivre notre fichier par git:
 git commit -m "creation de texte"
 
 il existe une commande qui fait les deux a la fois
-.git commit -a "commentaire"
+.git commit -a -m "commentaire"
 
 pour avoir l'historique de mes commits
 git log
+pour renommer un fichier 
+.git mv nomactuel.txt nomnouveau.txt
+ensuite on fait le commit
+pour supprimer un fichier
+
 
 le stage contient les fichiers indexe
