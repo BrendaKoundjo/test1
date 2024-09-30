@@ -109,7 +109,7 @@ public class Utilisateur {
             soldeGeneral += user.getSoldePersonnel();
         }
         if (soldeGeneral < 0) {
-            throw new NegativeArraySizeException("Le solde général est négatif : " + soldeGeneral);
+            throw new NegativeArraySizeException("Le solde général est négatif  user: " + soldeGeneral);
         }
         return soldeGeneral;
     }
