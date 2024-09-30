@@ -91,5 +91,35 @@ public class TestOperationMathematique {
 	            fail("L'exception ne devrait pas être lancée pour des emails valides.");
 	        }
 	    }
-	    
+	    @Test
+	    public void testAjouterUtilisateurEmailInvalide() {
+	        Utilisateur user = new Utilisateur(1, "John Doe", 30, "john.doe@invalid", "0123456789", "Paris", 1000.0);
+	        try {
+	            SoldePersonnel.ajouter(user);
+	            fail("Une exception EmailInvalidException devrait être lancée.");
+	        } catch (EmailInvalidException e) {
+	            assertEquals("Email invalide : john.doe@invalid", e.getMessage());
+	        }
+	    }
+
+	    @Test
+	    public void testSupprimerUtilisateurInexistant() {
+	        try {
+	            SoldePersonnel.supprimer(999); // ID inexistant
+	            fail("Une exception SuppressionInvalidException devrait être lancée.");
+	        } catch (SuppressionInvalidException e) {
+	            assertEquals("Aucun utilisateur trouvé avec l'ID : 999", e.getMessage());
+	        }
+	    }
+
+	    @Test
+	    public void testAjouterUtilisateurValide() {
+	        Utilisateur user = new Utilisateur(2, "Jane Doe", 25, "jane.doe@example.com", "0123456789", "Lyon", 500.0);
+	        try {
+	            SoldePersonnel.ajouter(user);
+	            assertEquals(1, SoldePersonnel.lister().size());
+	        } catch (EmailInvalidException e) {
+	            fail("L'exception ne devrait pas être lancée pour un email valide.");
+	        }
+	    }
 }
