@@ -61,4 +61,73 @@ public class TestOperationMathematique {
 	            assertEquals("Le tableau ne doit pas être vide.", e.getMessage());
 	        }
 	    }
+	    @Test
+	    public void testAjouterUtilisateurValide() {
+	        Utilisateur user = new Utilisateur(1, "John Doe", 30, "john.doe@example.com", "0123456789", "Paris", 1000.0);
+	        try {
+	            SoldePersonnel.ajouter(user);
+	            assertEquals(1, SoldePersonnel.lister().size());
+	        } catch (EmailInvalidException e) {
+	            fail("L'exception ne devrait pas être lancée pour un email valide.");
+	        }
+	    }
+
+	    @Test
+	    public void testAjouterUtilisateurEmailInvalide() {
+	        Utilisateur user = new Utilisateur(2, "Jane Doe", 25, "jane.doe@invalid", "0123456789", "Lyon", 500.0);
+	        try {
+	            SoldePersonnel.ajouter(user);
+	            fail("Une exception EmailInvalidException devrait être lancée.");
+	        } catch (EmailInvalidException e) {
+	            assertEquals("Email invalide : jane.doe@invalid", e.getMessage());
+	        }
+	    }
+
+	    @Test
+	    public void testSupprimerUtilisateurExist() {
+	        Utilisateur user = new Utilisateur(3, "Alice", 28, "alice@example.com", "0123456789", "Marseille", 750.0);
+	        try {
+	            SoldePersonnel.ajouter(user);
+	            SoldePersonnel.supprimer(3);
+	            assertEquals(0, SoldePersonnel.lister().size());
+	        } catch (Exception e) {
+	            fail("Aucune exception ne devrait être lancée ici.");
+	        }
+	    }
+
+	    @Test
+	    public void testSupprimerUtilisateurInexistant() {
+	        try {
+	            SoldePersonnel.supprimer(999); // ID inexistant
+	            fail("Une exception SuppressionInvalidException devrait être lancée.");
+	        } catch (SuppressionInvalidException e) {
+	            assertEquals("Aucun utilisateur trouvé avec l'ID : 999", e.getMessage());
+	        }
+	    }
+
+	    @Test
+	    public void testListerUtilisateurs() {
+	        Utilisateur user1 = new Utilisateur(4, "Bob", 35, "bob@example.com", "0123456789", "Nice", 1200.0);
+	        Utilisateur user2 = new Utilisateur(5, "Charlie", 22, "charlie@example.com", "0123456789", "Nice", 800.0);
+	        try {
+	            SoldePersonnel.ajouter(user1);
+	            SoldePersonnel.ajouter(user2);
+	            assertEquals(2, SoldePersonnel.lister().size());
+	        } catch (EmailInvalidException e) {
+	            fail("L'exception ne devrait pas être lancée pour des emails valides.");
+	        }
+	    }
+
+	    @Test
+	    public void testAfficherUtilisateurParID() {
+	        Utilisateur user = new Utilisateur(6, "Dave", 29, "dave@example.com", "0123456789", "Toulouse", 900.0);
+	        try {
+	            SoldePersonnel.ajouter(user);
+	            Utilisateur retrievedUser = SoldePersonnel.afficher(6);
+	            assertNotNull(retrievedUser);
+	            assertEquals("Dave", retrievedUser.getNom());
+	        } catch (EmailInvalidException e) {
+	            fail("L'exception ne devrait pas être lancée pour un email valide.");
+	        }
+	    }
 }
