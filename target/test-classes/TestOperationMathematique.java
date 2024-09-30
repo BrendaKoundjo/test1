@@ -61,4 +61,34 @@ public class TestOperationMathematique {
 	            assertEquals("Le tableau ne doit pas être vide.", e.getMessage());
 	        }
 	    }
+	    @Test
+	    public void testAnalyserSoldeGeneral() {
+	        try {
+	            Utilisateur user1 = new Utilisateur(1, "John Doe", 30, "john.doe@example.com", "0123456789", "Paris", 500.0);
+	            Utilisateur user2 = new Utilisateur(2, "Jane Doe", 25, "jane.doe@example.com", "0123456789", "Lyon", -600.0);
+	            SoldePersonnel.ajouter(user1);
+	            SoldePersonnel.ajouter(user2);
+	            SoldePersonnel.analyserSoldeGeneral();
+	            fail("Une exception NegativeGeneralBalanceException devrait être lancée.");
+	        } catch (NegativeGeneralBalanceException e) {
+	            assertEquals("Le solde général est négatif : -100.0", e.getMessage());
+	        } catch (EmailInvalidException e) {
+	            fail("L'exception ne devrait pas être lancée pour des emails valides.");
+	        }
+	    }
+
+	    @Test
+	    public void testUtilisateurLePlusRiche() {
+	        Utilisateur user1 = new Utilisateur(3, "Alice", 28, "alice@example.com", "0123456789", "Marseille", 700.0);
+	        Utilisateur user2 = new Utilisateur(4, "Bob", 35, "bob@example.com", "0123456789", "Nice", 1200.0);
+	        try {
+	            SoldePersonnel.ajouter(user1);
+	            SoldePersonnel.ajouter(user2);
+	            Utilisateur richestUser = SoldePersonnel.utilisateurLePlusRiche();
+	            assertNotNull(richestUser);
+	            assertEquals("Bob", richestUser.getNom());
+	        } catch (EmailInvalidException e) {
+	            fail("L'exception ne devrait pas être lancée pour des emails valides.");
+	        }
+	    }
 }
