@@ -21,5 +21,19 @@ public class OperationMathematique {
         Collections.sort(listes, Collections.reverseOrder()); // Tri décroissant
         return listes; // Retourner la liste triée
     }
+	 // Méthode pour retourner le plus grand nombre d'un tableau
+    public static double maxNumba(double[] valeurs) {
+        if (valeurs == null || valeurs.length == 0) {
+            throw new IllegalArgumentException("Le tableau ne doit pas être vide.");
+        }
+        
+        double max = valeurs[0];
+        for (double valeur : valeurs) {
+            if (valeur > max) {
+                max = valeur;
+            }
+        }
+        return max;
+    }
 
 }
