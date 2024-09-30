@@ -1,5 +1,9 @@
 package com.stjean.operation;
 
+import java.util.ArrayList;
+
+import org.junit.rules.ExpectedException;
+
 public class Utilisateur {
     private int id;
     private String nom;
@@ -47,17 +51,14 @@ public class Utilisateur {
     public double getSoldePersonnel() {
         return soldePersonnel;
     }
-    import java.util.ArrayList;
 
-    public class SoldePersonnel {
+    public static class SoldePersonnel {
         // Propriété statique pour stocker la liste des utilisateurs
         private static ArrayList<Utilisateur> users = new ArrayList<>();
 
         // Méthode pour ajouter un utilisateur
-        public static void ajouter(Utilisateur user) throws EmailInvalidException {
-            if (!validerEmail(user.getEmail())) {
-                throw new EmailInvalidException("Email invalide : " + user.getEmail());
-            }
+        public static void ajouter(Utilisateur user) {
+            
             users.add(user);
         }
 
@@ -96,5 +97,31 @@ public class Utilisateur {
             String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
             return email.matches(emailRegex);
         }
+    }
+    private static ArrayList<Utilisateur> users = new ArrayList<>();
+
+    // ... (autres méthodes)
+
+    // Méthode pour analyser le solde général
+    public static double analyserSoldeGeneral() throws NegativeArraySizeException {
+        double soldeGeneral = 0.0;
+        for (Utilisateur user : users) {
+            soldeGeneral += user.getSoldePersonnel();
+        }
+        if (soldeGeneral < 0) {
+            throw new NegativeArraySizeException("Le solde général est négatif : " + soldeGeneral);
+        }
+        return soldeGeneral;
+    }
+
+    // Méthode pour trouver l'utilisateur le plus riche
+    public static Utilisateur utilisateurLePlusRiche() {
+        Utilisateur richestUser = null;
+        for (Utilisateur user : users) {
+            if (richestUser == null || user.getSoldePersonnel() > richestUser.getSoldePersonnel()) {
+                richestUser = user;
+            }
+        }
+        return richestUser;
     }
 }
