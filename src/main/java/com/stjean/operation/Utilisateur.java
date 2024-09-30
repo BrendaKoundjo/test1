@@ -56,9 +56,11 @@ public class Utilisateur {
         // Propriété statique pour stocker la liste des utilisateurs
         private static ArrayList<Utilisateur> users = new ArrayList<>();
 
-        // Méthode pour ajouter un utilisateur
-        public static void ajouter(Utilisateur user) {
-            
+        
+        public static void ajouter(Utilisateur user) throws EmailInvalidException {
+            if (!validerEmail1(user.getEmail())) {
+                throw new EmailInvalidException("Email invalide : " + user.getEmail());
+            }
             users.add(user);
         }
 
@@ -72,9 +74,15 @@ public class Utilisateur {
                 }
             }
             if (userToRemove == null) {
-                throw new SuppressionInvalidException();
+                throw new SuppressionInvalidException("Aucun utilisateur trouvé avec l'ID : " + id);
             }
             users.remove(userToRemove);
+        }
+
+        // Méthode pour valider un email
+        private static boolean validerEmail1(String email) {
+            String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+            return email.matches(emailRegex);
         }
 
         // Méthode pour lister les utilisateurs

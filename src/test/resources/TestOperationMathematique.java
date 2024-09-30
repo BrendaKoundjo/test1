@@ -91,4 +91,5 @@ public class TestOperationMathematique {
 	            fail("L'exception ne devrait pas être lancée pour des emails valides.");
 	        }
 	    }
+	    
 }
