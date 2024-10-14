@@ -34,7 +34,7 @@ les Branches:
 les branches sont creer soit en local soit a distance: comment creer les branche en local et les push
 
 pour creer une branche: git branche nom_de_la_branche 
-lorsqu'on creer une branche le projet actuel est copier dans la branche
+lorsqu'on creer une b branche le projet actuel est copier dans la branche
 
 pour se positionner dans la branche : git checkout main
 pour avoir la liste des branch : git branch et la branche dans laquelle nous somme a l'etoile
