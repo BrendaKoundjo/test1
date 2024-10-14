@@ -27,3 +27,20 @@ pour supprimer un fichier
 
 
 le stage contient les fichiers indexe
+
+
+
+les Branches:
+les branches sont creer soit en local soit a distance: comment creer les branche en local et les push
+
+pour creer une branche: git branche nom_de_la_branche 
+lorsqu'on creer une b branche le projet actuel est copier dans la branche
+
+pour se positionner dans la branche : git checkout main
+pour avoir la liste des branch : git branch et la branche dans laquelle nous somme a l'etoile
+
+pour creer la commande et utiliser directement : git checkout -b nom_de_la_branche
+pour lier le projet local au depot distant git remote add origin https://github.com/christmagne/ISI.git
+pour lister nos depots distant : git remote -v
+
+pour renommer une branche,on se positionne sur la branhe et on tape git branch -m nouveau_nom
